@@ -1,5 +1,5 @@
 defmodule Board do
-  def create_board do
+  def create_board() do
     [
       [" ", " ", " "],
       [" ", " ", " "],
