@@ -4,6 +4,6 @@ defmodule TicTacToe do
   """
   def start(p1 \\ "P1", p2 \\ "P2") do
     board = Board.create_board()
-    IO.puts("Welcome #{p1} and #{p2} \n #{board}")
+    IO.puts("Welcome #{p1} and #{p2} \n #{Board.print_board(board)}")
   end
 end
