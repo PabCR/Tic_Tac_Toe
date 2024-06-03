@@ -1,0 +1,18 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+env:
+  MIX_ENV: test
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: elixir:1.15.7
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Tests
+      run: mix test
