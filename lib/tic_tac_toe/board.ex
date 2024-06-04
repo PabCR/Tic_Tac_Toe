@@ -26,27 +26,14 @@ defmodule TicTacToe.Board do
     end
   end
 
-  def check_win(board) do
-    win_conditions = [
-      # Horizontal
-      [[0, 0], [0, 1], [0, 2]],
-      [[1, 0], [1, 1], [1, 2]],
-      [[2, 0], [2, 1], [2, 2]],
-      # Vertical
-      [[0, 0], [1, 0], [2, 0]],
-      [[0, 1], [1, 1], [2, 1]],
-      [[0, 2], [1, 2], [2, 2]],
-      # Diagonal
-      [[0, 0], [1, 1], [2, 2]],
-      [[0, 2], [1, 1], [2, 0]]
-    ]
+  def check_win([[y, y, y], _, _]) when y != "-", do: true
+  def check_win([_, [y, y, y], _]) when y != "-", do: true
+  def check_win([_, _, [y, y, y]]) when y != "-", do: true
+  def check_win([[y, _, _], [y, _, _], [y, _, _]]) when y != "-", do: true
+  def check_win([[_, y, _], [_, y, _], [_, y, _]]) when y != "-", do: true
+  def check_win([[_, _, y], [_, _, y], [_, _, y]]) when y != "-", do: true
+  def check_win([[y, _, _], [_, y, _], [_, _, y]]) when y != "-", do: true
+  def check_win([[_, _, y], [_, y, _], [y, _, _]]) when y != "-", do: true
 
-    Enum.any?(win_conditions, fn [a, b, c] ->
-      Enum.at(Enum.at(board, Enum.at(a, 0)), Enum.at(a, 1)) != "-" &&
-        Enum.at(Enum.at(board, Enum.at(a, 0)), Enum.at(a, 1)) ==
-          Enum.at(Enum.at(board, Enum.at(b, 0)), Enum.at(b, 1)) &&
-        Enum.at(Enum.at(board, Enum.at(a, 0)), Enum.at(a, 1)) ==
-          Enum.at(Enum.at(board, Enum.at(c, 0)), Enum.at(c, 1))
-    end)
-  end
+  def check_win(_), do: false
 end

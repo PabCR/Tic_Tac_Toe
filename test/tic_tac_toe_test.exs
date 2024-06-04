@@ -13,12 +13,12 @@ defmodule TicTacToeTest do
            ]
   end
 
-  test "Turns board to string" do
+  test "turns board to string" do
     board = Board.create_board()
     assert Board.board_string(board) == "- | - | -\n- | - | -\n- | - | -"
   end
 
-  test "Edits board when empty space" do
+  test "edits board when empty space" do
     board = Board.create_board()
 
     assert Board.edit_board(board, 0, 0, "X") ==
@@ -30,13 +30,13 @@ defmodule TicTacToeTest do
               ]}
   end
 
-  test "Does not edit board when space already taken" do
+  test "does not edit board when space already taken" do
     board = Board.create_board()
     {_, board} = Board.edit_board(board, 0, 0, "X")
     assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
   end
 
-  test "Checks for conflict in coordinates" do
+  test "checks for conflict in coordinates" do
     board = Board.create_board()
     {_, board} = Board.edit_board(board, 0, 0, "X")
 
@@ -49,7 +49,7 @@ defmodule TicTacToeTest do
     # assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
   end
 
-  test "Checks for win" do
+  test "checks for win" do
     board = [
       ["X", "X", "X"],
       ["O", "X", "O"],
@@ -59,11 +59,41 @@ defmodule TicTacToeTest do
     assert Board.check_win(board) == true
   end
 
-  test "Checks for no win" do
+  test "checks for no win" do
     board = [
       ["X", "O", "X"],
       ["O", "X", "O"],
       ["O", "X", "-"]
+    ]
+
+    assert Board.check_win(board) == false
+  end
+
+  test "empty board does not have a winner" do
+    board = [
+      ["-", "-", "-"],
+      ["-", "-", "-"],
+      ["-", "-", "-"]
+    ]
+
+    assert Board.check_win(board) == false
+  end
+
+  test "empty row does not have a winner" do
+    board = [
+      ["-", "-", "-"],
+      ["X", "O", "X"],
+      ["-", "-", "-"]
+    ]
+
+    assert Board.check_win(board) == false
+  end
+
+  test "empty column does not have a winner" do
+    board = [
+      ["-", "X", "-"],
+      ["-", "O", "X"],
+      ["-", "X", "-"]
     ]
 
     assert Board.check_win(board) == false
