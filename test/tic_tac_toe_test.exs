@@ -1,7 +1,7 @@
 defmodule TicTacToeTest do
   use ExUnit.Case
   alias TicTacToe
-  alias TicTacToe.Board, as: Board
+  alias TicTacToe.Board
 
   doctest TicTacToe
 
@@ -16,5 +16,15 @@ defmodule TicTacToeTest do
   test "Turns board to string" do
     board = Board.create_board()
     assert Board.board_string(board) == "- | - | -\n- | - | -\n- | - | -"
+  end
+
+  test "Edits board" do
+    board = Board.create_board()
+
+    assert Board.edit_board(board, 0, 0, "X") == [
+             ["X", "-", "-"],
+             ["-", "-", "-"],
+             ["-", "-", "-"]
+           ]
   end
 end

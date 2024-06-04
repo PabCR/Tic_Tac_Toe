@@ -12,4 +12,10 @@ defmodule TicTacToe.Board do
       Enum.join(row, " | ")
     end)
   end
+
+  def edit_board(board, row, column, symbol) do
+    List.update_at(board, row, fn inner_list ->
+      List.replace_at(inner_list, column, symbol)
+    end)
+  end
 end
