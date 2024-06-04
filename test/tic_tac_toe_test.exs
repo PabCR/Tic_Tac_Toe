@@ -48,6 +48,7 @@ defmodule TicTacToeTest do
 
     # assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
   end
+
   test "Checks for win" do
     board = [
       ["X", "X", "X"],
@@ -57,6 +58,7 @@ defmodule TicTacToeTest do
 
     assert Board.check_win(board) == true
   end
+
   test "Checks for no win" do
     board = [
       ["X", "O", "X"],
