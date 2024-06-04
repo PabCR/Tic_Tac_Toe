@@ -21,16 +21,31 @@ defmodule TicTacToeTest do
   test "Edits board when empty space" do
     board = Board.create_board()
 
-    assert Board.edit_board(board, 0, 0, "X") == [
-             ["X", "-", "-"],
-             ["-", "-", "-"],
-             ["-", "-", "-"]
-           ]
+    assert Board.edit_board(board, 0, 0, "X") ==
+             {:ok,
+              [
+                ["X", "-", "-"],
+                ["-", "-", "-"],
+                ["-", "-", "-"]
+              ]}
   end
 
   test "Does not edit board when space already taken" do
     board = Board.create_board()
-    board = Board.edit_board(board, 0, 0, "X")
+    {_, board} = Board.edit_board(board, 0, 0, "X")
     assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
+  end
+
+  test "Checks for conflict in coordinates" do
+    board = Board.create_board()
+    {_, board} = Board.edit_board(board, 0, 0, "X")
+
+    assert board == [
+             ["X", "-", "-"],
+             ["-", "-", "-"],
+             ["-", "-", "-"]
+           ]
+
+    # assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
   end
 end
