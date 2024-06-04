@@ -27,6 +27,7 @@ defmodule TicTacToeTest do
              ["-", "-", "-"]
            ]
   end
+
   test "Does not edit board when space already taken" do
     board = Board.create_board()
     board = Board.edit_board(board, 0, 0, "X")

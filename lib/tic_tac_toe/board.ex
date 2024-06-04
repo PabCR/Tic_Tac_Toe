@@ -19,6 +19,7 @@ defmodule TicTacToe.Board do
         List.update_at(board, row, fn inner_list ->
           List.replace_at(inner_list, column, symbol)
         end)
+
       _ ->
         {:error, "Invalid Position"}
     end
