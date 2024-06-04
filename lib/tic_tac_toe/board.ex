@@ -1,4 +1,4 @@
-defmodule Board do
+defmodule TicTacToe.Board do
   def create_board() do
     [
       ["-", "-", "-"],
@@ -6,6 +6,7 @@ defmodule Board do
       ["-", "-", "-"]
     ]
   end
+
   def board_string(board) do
     Enum.map_join(board, "\n", fn row ->
       Enum.join(row, " | ")

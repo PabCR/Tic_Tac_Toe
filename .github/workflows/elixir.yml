@@ -11,5 +11,7 @@ jobs:
       image: elixir:1.15.7
     steps:
     - uses: actions/checkout@v4
+    - name: Check Formatting
+      run: mix format --check-formatted
     - name: Run Tests
       run: mix test
