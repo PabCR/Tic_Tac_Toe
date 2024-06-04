@@ -18,7 +18,7 @@ defmodule TicTacToeTest do
     assert Board.board_string(board) == "- | - | -\n- | - | -\n- | - | -"
   end
 
-  test "Edits board" do
+  test "Edits board when empty space" do
     board = Board.create_board()
 
     assert Board.edit_board(board, 0, 0, "X") == [
@@ -26,5 +26,10 @@ defmodule TicTacToeTest do
              ["-", "-", "-"],
              ["-", "-", "-"]
            ]
+  end
+  test "Does not edit board when space already taken" do
+    board = Board.create_board()
+    board = Board.edit_board(board, 0, 0, "X")
+    assert Board.edit_board(board, 0, 0, "O") == {:error, "Invalid Position"}
   end
 end

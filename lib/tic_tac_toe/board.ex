@@ -14,8 +14,13 @@ defmodule TicTacToe.Board do
   end
 
   def edit_board(board, row, column, symbol) do
-    List.update_at(board, row, fn inner_list ->
-      List.replace_at(inner_list, column, symbol)
-    end)
+    case Enum.at(Enum.at(board, row), column) do
+      "-" ->
+        List.update_at(board, row, fn inner_list ->
+          List.replace_at(inner_list, column, symbol)
+        end)
+      _ ->
+        {:error, "Invalid Position"}
+    end
   end
 end
