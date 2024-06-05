@@ -1,6 +1,4 @@
 defmodule TicTacToe.Board do
-  alias TicTacToe.Terminal
-
   def create_board() do
     [
       ["-", "-", "-"],

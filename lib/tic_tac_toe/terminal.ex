@@ -18,13 +18,15 @@ defmodule TicTacToe.Terminal do
 
   def winner(symbol, p1, p2) do
     IO.puts("------------------------------")
+
     case symbol do
       "X" ->
-        IO.puts("Player #{p1} wins")
+        IO.puts("Player #{p2} wins")
 
       "O" ->
-        IO.puts("Player #{p2} wins")
+        IO.puts("Player #{p1} wins")
     end
+
     IO.puts("Game Over")
   end
 
@@ -38,6 +40,7 @@ defmodule TicTacToe.Terminal do
       "X" ->
         IO.puts("Player: #{p1} plays #{symbol}")
         get_move(board)
+
       "O" ->
         IO.puts("Player: #{p2} plays #{symbol}")
         get_move(board)
@@ -47,6 +50,7 @@ defmodule TicTacToe.Terminal do
   defp get_move(board) do
     row = IO.gets("Enter row:") |> string_to_integer()
     column = IO.gets("Enter column:") |> string_to_integer()
+
     case check_valid_input?(board, row, column) do
       true ->
         [row, column]
